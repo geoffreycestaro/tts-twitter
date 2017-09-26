@@ -1,6 +1,11 @@
 <h1>@<%= current_user.username %>'s Twitter Feed</h1>
 <p>Here is what your "friends" are saying:</p>
 
+<%= form_for Tweet.new, url: {action: "epi_tweet"} do |f| %>
+	  <%= f.text_field :message, class: "form-control" %>
+	  <%= f.hidden_field :user_id, value: current_user.id %>
+	  <%= f.submit "New Tweet", class: "btn btn-primary" %>
+<% end %>
 
 <div>
     <% @following_tweets.each do |tweet| %>

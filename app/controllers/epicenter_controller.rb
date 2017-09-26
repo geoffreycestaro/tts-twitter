@@ -8,6 +8,7 @@ def feed
       if current_user.following.include?(tweet.user_id) || current_user.id == tweet.user_id
         @following_tweets.push(tweet)
       end
+
     end
 end
 
@@ -31,4 +32,13 @@ end
 
     redirect_to show_user_path(id: params[:id])
   end
+
+
+def epi_tweet
+  @tweet = Tweet.new
+  @tweet.message = "#{params[:tweet][:message]}"
+  @tweet.user_id = "#{params[:tweet][:user_id].to_i}"
+  @tweet.save
+  redirect_to root_path
+end
 end

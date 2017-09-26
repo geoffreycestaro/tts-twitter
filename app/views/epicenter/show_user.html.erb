@@ -5,6 +5,14 @@
 <p><%= @user.bio %></p>
 
 <p>
+<%= form_for Tweet.new, url: {action: "epi_tweet"} do |f| %>
+      <%= f.text_field :message, class: "form-control" %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit "New Tweet", class: "btn btn-primary" %>
+<% end %>
+</p>
+
+<p>
     <% if current_user.following.include?(@user.id) %>
         <%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>
     <% else %>
