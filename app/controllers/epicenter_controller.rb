@@ -1,6 +1,6 @@
 class EpicenterController < ApplicationController
    before_action :authenticate_user!
-
+   include TweetsHelper
 def tag_tweets
     @tag = Tag.find(params[:id])
 end
@@ -39,10 +39,12 @@ end
 
 
 def epi_tweet
-  @tweet = Tweet.new
-  @tweet.message = "#{params[:tweet][:message]}"
-  @tweet.user_id = "#{params[:tweet][:user_id].to_i}"
+  
+  @tweet = Tweet.create(message: params[:tweet][:message], user_id: params[:tweet][:user_id].to_i)
+
+  @tweet = get_tagged(@tweet)
   @tweet.save
+
   redirect_to root_path
 end
 end
