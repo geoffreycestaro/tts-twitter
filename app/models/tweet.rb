@@ -7,7 +7,7 @@ class Tweet < ApplicationRecord
     before_validation :link_check, on: :create
 
  	validates :message, presence: true
-  	validates :message, presence: true, length: {maximum: 140, too_long: "A tweet is only 140 max. Everybody knows that!"}
+  	validates :message, presence: true, length: {maximum: 140, too_long: "A tweet is only 140 max. Everybody knows that!"}, on: :create
 
 	after_validation :apply_link, on: :create
 
