@@ -13,13 +13,15 @@
 </p>
 
 <p>
-    <% if current_user.following.include?(@user.id) %>
-        <%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>
-    <% else %>
-        <% if current_user.id != @user.id %>
-	    <%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
-	<% end %>
+  <% if current_user.following.include?(@user.id) %>
+    <%= link_to "Following", unfollow_path(id: @user.id), 
+        class: "btn btn-primary", id: "unfollow_btn" %>
+  <% else %>
+    <% if current_user.id != @user.id %>
+      <%= link_to "Follow", now_following_path(id: @user.id), 
+          class: "btn btn-primary" %>
     <% end %>
+  <% end %>
 </p>
 
 <% @user.tweets.each do |tweet| %>

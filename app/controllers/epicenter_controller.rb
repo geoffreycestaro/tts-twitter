@@ -37,6 +37,9 @@ end
     redirect_to show_user_path(id: params[:id])
   end
 
+  def all_users
+    @users = User.all
+  end
 
   def epi_tweet
     
@@ -47,4 +50,27 @@ end
 
     redirect_to root_path
   end
+
+  def following
+    @user = User.find(params[:id])
+    @users = []
+
+    User.all.each do |user|
+      if @user.following.include?(user.id)
+        @users.push(user)
+      end
+    end
+  end
+
+  def followers
+    @user =  User.find(params[:id])
+    @users = []
+
+    User.all.each do |user|
+      if user.following.include?(@user.id)
+        @users.push(user)
+      end
+    end
+  end
+
 end

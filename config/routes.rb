@@ -9,6 +9,12 @@ Rails.application.routes.draw do
 
   get 'tag_tweets' => 'epicenter#tag_tweets'
 
+  get 'all_users' => 'epicenter#all_users'
+
+  get 'following' => 'epicenter#following'
+
+  get 'followers' => 'epicenter#followers'
+
   post 'epi_tweet' => 'epicenter#epi_tweet'
 
   resources :tweets
